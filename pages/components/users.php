@@ -46,25 +46,31 @@
                 <tr>
                     <th> User </th>
                     <th> First name </th>
-                    <th> Progress </th>
-                    <th> Amount </th>
-                    <th> Deadline </th>
+                    <th> Last name </th>
+                    <th> Username </th>
+                    <th> Email </th>
                 </tr>
                 </thead>
                 <tbody>
+
+                <?php
+                    $query_users = $conn->query("SELECT * FROM users ORDER BY id DESC") or die("Failed to query users ".$conn->error.__LINE__);
+
+                    while ($row = $query_users->fetch_assoc()):
+                ?>
+
                 <tr>
                     <td class="py-1">
                     <img src="../../assets/images/faces-clipart/pic-1.png" alt="image" />
                     </td>
-                    <td> Herman Beck </td>
-                    <td>
-                    <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    </td>
-                    <td> $ 77.99 </td>
-                    <td> May 15, 2015 </td>
+                    <td> <?php echo $row['first_name']; ?> </td>
+                    <td> <?php echo $row['last_name']; ?> </td>
+                    <td> <?php echo $row['user_name']; ?> </td>
+                    <td> <?php echo $row['email']; ?> </td>
                 </tr>
+
+                <?php endwhile; ?>
+
                 </tbody>
             </table>
             </div>
